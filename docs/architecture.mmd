@@ -1,0 +1,126 @@
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "Inter, Segoe UI, Arial, sans-serif",
+    "fontSize": "15px",
+    "primaryColor": "#EEF4FF",
+    "primaryBorderColor": "#6366F1",
+    "primaryTextColor": "#172033",
+    "lineColor": "#64748B",
+    "secondaryColor": "#F0FDFA",
+    "tertiaryColor": "#FFF7ED",
+    "clusterBkg": "#F0FDFA",
+    "clusterBorder": "#14B8A6"
+  },
+  "flowchart": { "curve": "basis", "nodeSpacing": 42, "rankSpacing": 60, "htmlLabels": true }
+}}%%
+flowchart LR
+  subgraph ENTRY["Entry Points"]
+    direction TB
+    USER["Python Application"]
+    CLI["Tonviewer CLI<br/>tonviewer.cli"]
+    COMPAT["Compatibility API<br/>Wallet · HashTx<br/>Sync · JSON strings"]
+    CLIENT["TonviewerClient<br/>Async · context-managed"]
+  end
+
+  subgraph SERVICES["SDK Services · tonviewer/*/service.py"]
+    direction TB
+    WALLET["WalletService<br/>account info · events · raw tx"]
+    PARSER["Transaction Parser<br/>direction · filters · totals · cursors"]
+    NFT["NFTClient<br/>ownership · metadata · categories"]
+    GIFTS["GiftService<br/>on-chain collectible NFTs"]
+    JETTON["JettonService<br/>token balances"]
+    FRAG["FragmentClient<br/>public username page parsing"]
+    PRICE["PriceService<br/>TON/USD · source fallback"]
+  end
+
+  subgraph TRANSPORT["HTTP and Provider Layer"]
+    direction TB
+    CFG["TonviewerConfig<br/>network · keys · retry · cache · rate · proxy"]
+    HTTP["core.http<br/>SyncHTTP · AsyncHTTP<br/>GET retry · 401 backup · pacing · bounded cache"]
+    TAPI["TonAPIProvider"]
+    TV2["TonCenterV2Provider"]
+    TV3["TonCenterV3Provider"]
+    FHTTP["Fragment-owned async HTTPX client"]
+    ERR["Typed errors<br/>authentication · rate limit · network · parsing"]
+  end
+
+  subgraph SOURCES["External Data Sources"]
+    direction TB
+    TONAPI["TONAPI REST<br/>accounts · events · Jettons · NFTs · rates"]
+    TC2["TON Center v2<br/>account fallback"]
+    TC3["TON Center v3<br/>raw indexed transactions"]
+    FRAGMENT["Fragment.com<br/>public HTML · no official API"]
+    CG["CoinGecko<br/>price fallback"]
+  end
+
+  subgraph OUTPUT["Results"]
+    direction TB
+    MODELS["Typed Pydantic models<br/>WalletInfo · NFTItem · GiftInfo<br/>JettonBalance · FragmentResult · PriceInfo"]
+    DATA["Transaction dictionaries<br/>and raw provider response"]
+    JSON["Compatibility JSON strings<br/>Wallet · HashTx"]
+  end
+
+  USER --> CLIENT
+  USER --> COMPAT
+  USER --> CLI
+  CLI --> COMPAT
+  CLI --> CLIENT
+  CLI --> PRICE
+  COMPAT --> WALLET
+  COMPAT -. HashTx event lookup .-> TAPI
+  CLIENT --> WALLET
+  CLIENT --> NFT
+  CLIENT --> GIFTS
+  CLIENT --> JETTON
+  CLIENT --> FRAG
+  CLIENT --> PRICE
+
+  WALLET --> PARSER
+  GIFTS --> NFT
+
+  CFG -. provider policy .-> HTTP
+  CFG -. proxy .-> FHTTP
+  WALLET --> TAPI
+  WALLET -. fallback .-> TV2
+  WALLET -. raw transactions .-> TV3
+  NFT --> TAPI
+  JETTON --> TAPI
+  FRAG --> TAPI
+  FRAG --> FHTTP
+  PRICE --> HTTP
+  TAPI --> HTTP
+  TV2 --> HTTP
+  TV3 --> HTTP
+
+  TAPI --> TONAPI
+  TV2 --> TC2
+  TV3 --> TC3
+  FHTTP --> FRAGMENT
+  HTTP --> CG
+  HTTP --> TONAPI
+  ERR -. maps failures from .-> HTTP
+  ERR -. maps failures from .-> FHTTP
+
+  WALLET --> MODELS
+  NFT --> MODELS
+  GIFTS --> MODELS
+  JETTON --> MODELS
+  FRAG --> MODELS
+  PRICE --> MODELS
+  PARSER --> DATA
+  TV3 --> DATA
+  COMPAT --> JSON
+
+  classDef entry fill:#EEF2FF,stroke:#6366F1,color:#172033,stroke-width:1.5px;
+  classDef service fill:#F0FDFA,stroke:#14B8A6,color:#172033,stroke-width:1.5px;
+  classDef transport fill:#FFF7ED,stroke:#F59E0B,color:#172033,stroke-width:1.5px;
+  classDef source fill:#F8FAFC,stroke:#64748B,color:#172033,stroke-width:1.5px;
+  classDef output fill:#F5F3FF,stroke:#8B5CF6,color:#172033,stroke-width:1.5px;
+  classDef concern fill:#FEF2F2,stroke:#EF4444,color:#172033,stroke-width:1.5px;
+  class USER,CLI,COMPAT,CLIENT entry;
+  class WALLET,PARSER,NFT,GIFTS,JETTON,FRAG,PRICE service;
+  class CFG,HTTP,TAPI,TV2,TV3,FHTTP transport;
+  class TONAPI,TC2,TC3,FRAGMENT,CG source;
+  class MODELS,DATA,JSON output;
+  class ERR concern;
