@@ -85,7 +85,7 @@ Configuration, examples, errors, architecture, and the verified fix history are 
 
 ## Architecture
 
-![Tonviewer architecture diagram](docs/architecture.png)
+![Tonviewer architecture diagram](https://github.com/user-attachments/assets/038b1b8b-0f6e-431b-9e28-03a27a692b48)
 
 The diagram's editable Mermaid source is [`docs/architecture.mmd`](docs/architecture.mmd). See the [architecture guide](docs/architecture.md) for provider and data-source notes.
 
