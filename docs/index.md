@@ -93,7 +93,7 @@ Provider data can be incomplete or delayed. Fragment results depend on public-pa
 
 - [Full documentation index](README.md)
 
-```
+```{toctree}
 :hidden:
 :maxdepth: 2
 
