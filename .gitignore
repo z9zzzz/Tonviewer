@@ -1,17 +1,20 @@
-@'
-.venv/
-venv/
+# Python bytecode and caches
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Virtual environments and local configuration
+.venv/
+venv/
+.env
+.env.*
+
+# Build and package artifacts
 build/
 dist/
 *.egg-info/
-.env
-.env.*
-'@ | Set-Content -Encoding utf8 .gitignore
 
-git add -A
-git status
+# Sphinx output
+docs/_build/

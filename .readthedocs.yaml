@@ -19,4 +19,4 @@ python:
 sphinx:
   # Sphinx configuration file; keep this path in sync with your docs layout.
   configuration: docs/conf.py
-  fail_on_warning: false
+  fail_on_warning: true

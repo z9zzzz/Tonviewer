@@ -2,7 +2,7 @@
 
 ## Requirements
 
-The package metadata currently requires Python 3.9 or newer. Network access is needed for live provider data. TON Center and TONAPI keys are configurable; the code can also call public endpoints subject to their rate and access limits.
+The package requires Python 3.10 or newer. Network access is needed for live provider data. TON Center and TONAPI keys are configurable; the code can also call public endpoints subject to their rate and access limits.
 
 ## From PyPI
 
@@ -33,7 +33,7 @@ python -m pip install -e ".[dev]"
 python -m pytest -q
 ```
 
-The `dev` extra declares pytest, pytest-asyncio, pytest-cov, respx, and aioresponses. Use the same Python executable to install the environment and run the tests. For example, on Windows PowerShell:
+The `dev` extra declares pytest, pytest-asyncio, pytest-cov, and respx. Use the same Python executable to install the environment and run the tests. For example, on Windows PowerShell:
 
 ```powershell
 py -3.12 -m venv .venv

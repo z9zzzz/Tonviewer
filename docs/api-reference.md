@@ -43,3 +43,10 @@ A transaction row's common keys are `Action`, `Time`, `From`, `To`, `Price`, `St
 ## Exception types
 
 All package exceptions inherit from `TonviewerError`. Common subclasses include `AddressError`, `WalletError`, `TransactionError`, `NFTError`, `JettonError`, `FragmentError`, `APIError`, `AuthenticationError`, `RateLimitError`, `TimeoutError`, `NetworkError`, `ProviderUnavailableError`, and `InvalidResponseError`. See [errors and troubleshooting](errors.md).
+
+## Exported API objects
+
+The following public objects are re-exported from the top-level `tonviewer` package. Their docstrings and signatures are generated from the source:
+
+.. automodule:: tonviewer
+   :members: TonviewerClient, Wallet, HashTx, WalletInfo, WalletBalance, FragmentResult, NFTItem, JettonBalance, GiftInfo, PriceInfo

@@ -28,7 +28,7 @@ Tonviewer is a Python SDK and CLI for reading public TON blockchain data. This g
 - [Verified fixes and behavior changes](changelog.md) and [audit-fix details](fixes.md)
 - [Development and tests](development.md)
 
-The repository [README](../README.md) is the short project overview. Install the package from PyPI using `python -m pip install --upgrade Tonviewer`. The source metadata requires Python 3.9 or newer.
+The repository [README](https://github.com/z9zzzz/Tonviewer/blob/master/README.md) is the short project overview. Install the package from PyPI using `python -m pip install --upgrade Tonviewer`. The source metadata requires Python 3.10 or newer.
 
 ## API choice at a glance
 

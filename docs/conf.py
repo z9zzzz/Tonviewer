@@ -6,10 +6,13 @@ from pathlib import Path
 # Make the src-layout package importable for Sphinx autodoc.
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
+from tonviewer import __version__
 
 project = "Tonviewer"
 author = "Tonviewer contributors"
-release = "1.3.1"
+release = __version__
+version = release
+root_doc = "index"
 
 extensions = [
     "sphinx.ext.autodoc",
@@ -21,6 +24,7 @@ extensions = [
 autosummary_generate = True
 autodoc_member_order = "bysource"
 autodoc_typehints = "description"
+myst_heading_anchors = 3
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
