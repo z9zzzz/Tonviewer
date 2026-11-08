@@ -31,12 +31,32 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 html_theme = "sphinx_rtd_theme"
 html_title = "Tonviewer Documentation"
+html_short_title = "Tonviewer"
+html_logo = "_static/ton-mark.svg"
+html_favicon = "_static/ton-mark.svg"
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
+html_show_sourcelink = False
 
 html_theme_options = {
-    "navigation_depth": 4,
-    "collapse_navigation": False,
+    "navigation_depth": 3,
+    "collapse_navigation": True,
     "sticky_navigation": True,
     "titles_only": False,
+    "includehidden": True,
+    "prev_next_buttons_location": "bottom",
+    "style_external_links": True,
+    "style_nav_header_background": "#0b2438",
+    "version_selector": True,
+    "language_selector": False,
+}
+
+html_context = {
+    "display_github": True,
+    "github_user": "z9zzzz",
+    "github_repo": "Tonviewer",
+    "github_version": "master",
+    "conf_py_path": "/docs/",
 }
 
 # Accept both reStructuredText and Markdown source files.

@@ -159,26 +159,23 @@ def test_configured_proxy_reaches_sync_async_and_fragment_clients():
 
 
 def test_price_info_reports_the_actual_fallback_source(monkeypatch):
-    class Response:
-        def __init__(self, payload):
-            self.payload = payload
-        def raise_for_status(self):
-            return None
-        def json(self):
-            return self.payload
-
     calls = []
-    def fake_get(url, **kwargs):
+    def fake_get(self, path, *, params=None, timeout=None):
+        url = self.config.base_url + "/" + path.lstrip("/")
         calls.append(url)
         if "tonapi" in url:
             raise RuntimeError("primary unavailable")
-        return Response({"the-open-network": {"usd": 2.5}})
+        return {"the-open-network": {"usd": 2.5}}
 
-    monkeypatch.setattr("tonviewer.prices.service.requests.get", fake_get)
-    info = PriceService().get_price_info()
-    assert info.ton_usd == 2.5
-    assert info.source == "coingecko"
-    assert info.timestamp.tzinfo is not None
+    monkeypatch.setattr("tonviewer.prices.service.SyncHTTP.get", fake_get)
+    service = PriceService()
+    try:
+        info = service.get_price_info()
+        assert info.ton_usd == 2.5
+        assert info.source == "coingecko"
+        assert info.timestamp.tzinfo is not None
+    finally:
+        service.close()
     assert calls == ["https://tonapi.io/v2/rates", "https://api.coingecko.com/api/v3/simple/price"]
 
 

@@ -1,0 +1,118 @@
+/* Tonviewer documentation theme: accessible, restrained TON-blue accents. */
+:root {
+  --tv-blue: #0098ea;
+  --tv-blue-deep: #0876b4;
+  --tv-ink: #13283b;
+  --tv-muted: #536879;
+  --tv-soft: #f1f8fc;
+}
+
+.wy-side-nav-search {
+  background: linear-gradient(145deg, #0b2438 0%, #123d5d 100%);
+  padding-top: 1.2em;
+}
+
+.wy-side-nav-search > a img.logo {
+  max-width: 4.25rem;
+  height: auto;
+  margin-bottom: 0.55rem;
+}
+
+.wy-side-nav-search .wy-dropdown > a,
+.wy-side-nav-search > a {
+  color: #fff;
+}
+
+.wy-side-nav-search input[type="text"] {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.45rem;
+}
+
+.wy-nav-side {
+  background: #10283b;
+}
+
+.wy-menu-vertical a:hover,
+.wy-menu-vertical li.current a:hover {
+  background: #193d58;
+}
+
+.wy-menu-vertical li.current > a,
+.wy-menu-vertical li.on a {
+  border-right: 3px solid var(--tv-blue);
+}
+
+.wy-nav-content {
+  max-width: 980px;
+}
+
+.tonviewer-mark {
+  margin: 0.25rem auto 0.75rem;
+}
+
+.tv-tagline {
+  margin: -0.4rem 0 1.25rem;
+  color: var(--tv-muted);
+  font-size: 1.22rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.rst-content p img[alt="PyPI version"],
+.rst-content p img[alt="Supported Python versions"],
+.rst-content p img[alt="MIT license"],
+.rst-content p img[alt="CI status"],
+.rst-content p img[alt="Read the Docs"] {
+  margin: 0.2rem 0.12rem;
+}
+
+.rst-content a,
+.rst-content a:visited {
+  color: var(--tv-blue-deep);
+}
+
+.rst-content a:hover {
+  color: #005d91;
+  text-decoration: underline;
+}
+
+.rst-content h1,
+.rst-content h2,
+.rst-content h3 {
+  color: var(--tv-ink);
+  letter-spacing: -0.015em;
+}
+
+.rst-content h1 {
+  font-weight: 750;
+}
+
+.rst-content code.literal,
+.rst-content tt.literal {
+  color: #075c8a;
+  background: var(--tv-soft);
+  border: 1px solid #dcecf5;
+  border-radius: 0.25rem;
+  padding: 0.08em 0.3em;
+}
+
+.rst-content pre {
+  border: 1px solid #e1eaf0;
+  border-radius: 0.45rem;
+  box-shadow: 0 2px 10px rgba(19, 40, 59, 0.04);
+}
+
+.rst-content .admonition,
+.rst-content details {
+  border-radius: 0.4rem;
+}
+
+.wy-breadcrumbs a {
+  color: var(--tv-blue-deep);
+}
+
+@media (max-width: 768px) {
+  .wy-nav-content {
+    padding: 1.5em 1.25em;
+  }
+}

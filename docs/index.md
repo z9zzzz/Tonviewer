@@ -1,32 +1,33 @@
+```{image} _static/ton-mark.svg
+:alt: TON network mark
+:align: center
+:width: 76px
+:class: tonviewer-mark
+```
+
 # Tonviewer
 
-Tonviewer is a Python SDK and command-line interface for TON wallet information, parsed account events, indexed transactions, Jetton balances, NFTs, on-chain collectible gifts, Fragment username lookups, and TON prices. It provides asynchronous typed services through `TonviewerClient` and a synchronous compatibility interface through `Wallet` and `HashTx`.
+<div class="tv-tagline">A Python SDK and CLI for exploring TON wallets and on-chain data.</div>
 
-The package requires Python 3.10 or newer. Network access is needed for live provider data; API keys are optional for public endpoints and subject to provider limits.
+<p align="center">
+  <a href="https://pypi.org/project/Tonviewer/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/Tonviewer?style=for-the-badge&logo=pypi&logoColor=white&color=0876b4"></a>
+  <a href="https://pypi.org/project/Tonviewer/"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/Tonviewer?style=for-the-badge&logo=python&logoColor=white"></a>
+  <a href="https://github.com/z9zzzz/Tonviewer/blob/master/LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/z9zzzz/Tonviewer?style=for-the-badge&color=1687c9"></a>
+  <a href="https://github.com/z9zzzz/Tonviewer/actions/workflows/ci.yml"><img alt="CI status" src="https://img.shields.io/github/actions/workflow/status/z9zzzz/Tonviewer/ci.yml?branch=master&style=for-the-badge&logo=githubactions&logoColor=white"></a>
+  <a href="https://tonviewer.readthedocs.io/en/latest/"><img alt="Read the Docs" src="https://img.shields.io/readthedocs/tonviewer?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
+</p>
 
-## Features
+Tonviewer brings the common TON explorer workflows into one Python package. Use the async `TonviewerClient` for typed service APIs, or the synchronous `Wallet` and `HashTx` helpers when you need the compatibility interface.
 
-- Wallet information and balances, with TONAPI metadata and TON Center v2 fallback.
-- Parsed TONAPI account events and separate raw TON Center v3 transaction responses.
-- Async NFT, Jetton, on-chain gift, and Fragment services.
-- TON/USD price lookup with TONAPI and CoinGecko sources.
-- A CLI installed as `Tonviewer` and a synchronous `Wallet`/`HashTx` compatibility API.
+## Get started
 
-See the [architecture and data sources](architecture.md) for provider boundaries and caveats. In particular, Fragment is parsed from public HTML; NFT categories are metadata heuristics; and scam indicators are not security conclusions.
-
-## Installation
-
-Install the published distribution with pip:
+**Python 3.10 or newer** is required. Install the published package:
 
 ```bash
 python -m pip install --upgrade Tonviewer
 ```
 
-For a source checkout and contributor setup, see [Installation](installation.md) and [Development](development.md).
-
-## Quick start
-
-Use the async client as a context manager so its HTTP clients are closed cleanly:
+Make your first wallet lookup with the asynchronous client:
 
 ```python
 import asyncio
@@ -34,56 +35,41 @@ from tonviewer import TonviewerClient
 
 async def main():
     async with TonviewerClient() as client:
-        info = await client.wallet.get_info("UQ...")
-        print(info.address, info.balance.ton, info.status.value)
-        page = await client.wallet.get_transactions("UQ...", limit=5)
-        print(page["transactions"])
+        wallet = await client.wallet.get_info("YOUR_TON_ADDRESS")
+        print(wallet.address, wallet.balance.ton, wallet.status.value)
 
 asyncio.run(main())
 ```
 
-The synchronous compatibility API returns JSON strings:
+Replace `YOUR_TON_ADDRESS` with a valid address. This example makes a live network request. For more examples, API key configuration, and the synchronous interface, continue to [Examples](examples.md) and [Configuration](configuration.md).
 
-```python
-import json
-from tonviewer import Wallet, HashTx
+## What you can do
 
-wallet = Wallet("UQ...")
-info = json.loads(wallet.info())
-print(info.get("Balance"))
-event = json.loads(HashTx("EVENT_ID_OR_TRANSACTION_HASH").get())
-```
+- **Wallets and transactions** — inspect account details, parse TONAPI events, or retrieve raw TON Center v3 transaction data.
+- **Tokens and collectibles** — retrieve Jetton balances, owned NFTs, and on-chain collectible gifts.
+- **Fragment and prices** — look up public Fragment username pages and TON/USD pricing.
+- **Command line** — run wallet, transaction, price, hash, and Fragment lookups with the `Tonviewer` command.
 
-These are network-backed examples; use a real TON address and provider access where needed. More verified examples are in [Examples](examples.md).
+Review the [architecture and data-source notes](architecture.md) before relying on provider data. Fragment results depend on public-page parsing, NFT labels use metadata heuristics, and scam indicators are caution flags rather than security verdicts.
 
 ## Documentation
 
-### Getting started
+### Learn the API
 
-- [Installation](installation.md)
-- [Examples](examples.md)
-- [Synchronous and asynchronous APIs](sync-async.md)
-- [Configuration](configuration.md)
+- [Installation](installation.md) · [Quick-start examples](examples.md) · [Sync and async APIs](sync-async.md)
+- [Configuration](configuration.md) · [API models and output](api-reference.md) · [Errors and troubleshooting](errors.md)
 
 ### Feature guides
 
-- [Wallets](wallets.md)
-- [Transactions and events](transactions.md)
-- [NFTs](nfts.md)
-- [On-chain collectible gifts](gifts.md)
-- [Jettons](jettons.md)
-- [Fragment usernames](fragment.md)
-- [TON prices](prices.md)
-- [Command-line interface](cli.md)
+- [Wallet information](wallets.md) · [Transactions and pagination](transactions.md)
+- [NFTs](nfts.md) · [Collectible gifts](gifts.md) · [Jettons](jettons.md)
+- [Fragment usernames](fragment.md) · [TON prices](prices.md) · [CLI](cli.md)
 
-### Reference and project information
+### Project and contributing
 
-- [API reference and output models](api-reference.md)
-- [Errors and troubleshooting](errors.md)
-- [Architecture and data sources](architecture.md)
-- [Development and documentation](development.md)
-- [Fixes and behavior notes](changelog.md)
-- [Audit fixes](fixes.md)
+- [Architecture](architecture.md) · [Development](development.md)
+- [Verified fixes and behavior notes](changelog.md) · [Audit-fix details](fixes.md)
+- [Full documentation index](README.md)
 
 ```{toctree}
 :hidden:
@@ -110,4 +96,4 @@ changelog
 fixes
 ```
 
-Project source and issue tracking are on [GitHub](https://github.com/z9zzzz/Tonviewer).
+Source, issue tracking, and releases are available on [GitHub](https://github.com/z9zzzz/Tonviewer).
