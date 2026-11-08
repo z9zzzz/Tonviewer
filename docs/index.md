@@ -1,5 +1,5 @@
 <p align="center">
-<img class="tv-home-logo" src="https://github.com/user-attachments/assets/0724b226-fdeb-4c2c-ad48-de3ac0bb2159" alt="Tonviewer logo" width="280">
+<img class="tv-home-logo" src="https://github.com/user-attachments/assets/0724b226-fdeb-4c2c-ad48-de3ac0bb2159" alt="Tonviewer logo" width="550">
 </p>
 
 # Tonviewer
