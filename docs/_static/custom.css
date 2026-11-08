@@ -1,4 +1,4 @@
-/* Tonviewer documentation theme: accessible, restrained TON-blue accents. */
+/* Tonviewer documentation theme: classic typography with restrained TON-blue accents. */
 :root {
   --tv-blue: #0098ea;
   --tv-blue-deep: #0876b4;
@@ -46,6 +46,48 @@
   max-width: 980px;
 }
 
+.wy-body-for-nav,
+.wy-nav-content,
+.rst-content {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+.rst-content h1,
+.rst-content h2,
+.rst-content h3,
+.rst-content h4 {
+  color: var(--tv-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+}
+
+.rst-content h1 {
+  font-size: 2.55rem;
+}
+
+.rst-content h2 {
+  margin-top: 1.65em;
+  font-size: 1.8rem;
+}
+
+.wy-menu-vertical,
+.wy-side-nav-search,
+.wy-breadcrumbs,
+.wy-nav-top,
+.wy-nav-content button {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.rst-content pre,
+.rst-content code,
+.rst-content tt,
+.wy-nav-content input {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
 .tonviewer-mark {
   margin: 0.25rem auto 0.75rem;
 }
@@ -58,11 +100,57 @@
   text-align: center;
 }
 
+.tv-home-logo {
+  display: block;
+  width: min(100%, 280px);
+  height: auto;
+  margin: 0 auto 1.05rem;
+}
+
+.tv-badges {
+  margin: 0.75rem 0 1.35rem;
+  text-align: center;
+}
+
+.tv-fork-ribbon {
+  position: fixed;
+  z-index: 1000;
+  top: 1.6rem;
+  right: -4.7rem;
+  width: 15rem;
+  padding: 0.55rem 0.7rem;
+  transform: rotate(45deg);
+  background: #0b2438;
+  color: #fff !important;
+  box-shadow: 0 2px 10px rgba(10, 30, 45, 0.22);
+  font: 600 0.82rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.tv-fork-ribbon:hover,
+.tv-fork-ribbon:focus {
+  background: var(--tv-blue-deep);
+  color: #fff !important;
+}
+
+.tv-fork-ribbon svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  margin-right: 0.25rem;
+  vertical-align: -0.17rem;
+  fill: currentColor;
+}
+
 .rst-content p img[alt="PyPI version"],
 .rst-content p img[alt="Supported Python versions"],
 .rst-content p img[alt="MIT license"],
 .rst-content p img[alt="CI status"],
-.rst-content p img[alt="Read the Docs"] {
+.rst-content p img[alt="Read the Docs"],
+.rst-content p img[alt="GitHub stars"],
+.rst-content p img[alt="Monthly downloads"],
+.rst-content p img[alt="Contributors"] {
   margin: 0.2rem 0.12rem;
 }
 
@@ -76,17 +164,6 @@
   text-decoration: underline;
 }
 
-.rst-content h1,
-.rst-content h2,
-.rst-content h3 {
-  color: var(--tv-ink);
-  letter-spacing: -0.015em;
-}
-
-.rst-content h1 {
-  font-weight: 750;
-}
-
 .rst-content code.literal,
 .rst-content tt.literal {
   color: #075c8a;
@@ -97,9 +174,14 @@
 }
 
 .rst-content pre {
+  background: #f4f4f4;
   border: 1px solid #e1eaf0;
   border-radius: 0.45rem;
   box-shadow: 0 2px 10px rgba(19, 40, 59, 0.04);
+}
+
+.rst-content .highlight {
+  border-radius: 0.45rem;
 }
 
 .rst-content .admonition,
@@ -114,5 +196,11 @@
 @media (max-width: 768px) {
   .wy-nav-content {
     padding: 1.5em 1.25em;
+  }
+
+  .tv-fork-ribbon {
+    top: 0.85rem;
+    right: -5.2rem;
+    font-size: 0.72rem;
   }
 }

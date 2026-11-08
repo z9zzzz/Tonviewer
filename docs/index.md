@@ -1,33 +1,33 @@
-```{image} _static/ton-mark.svg
-:alt: TON network mark
-:align: center
-:width: 76px
-:class: tonviewer-mark
-```
+<p align="center">
+<img class="tv-home-logo" src="https://github.com/user-attachments/assets/0724b226-fdeb-4c2c-ad48-de3ac0bb2159" alt="Tonviewer logo" width="280">
+</p>
 
 # Tonviewer
 
-<div class="tv-tagline">A Python SDK and CLI for exploring TON wallets and on-chain data.</div>
-
-<p align="center">
-  <a href="https://pypi.org/project/Tonviewer/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/Tonviewer?style=for-the-badge&logo=pypi&logoColor=white&color=0876b4"></a>
-  <a href="https://pypi.org/project/Tonviewer/"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/Tonviewer?style=for-the-badge&logo=python&logoColor=white"></a>
-  <a href="https://github.com/z9zzzz/Tonviewer/blob/master/LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/z9zzzz/Tonviewer?style=for-the-badge&color=1687c9"></a>
-  <a href="https://github.com/z9zzzz/Tonviewer/actions/workflows/ci.yml"><img alt="CI status" src="https://img.shields.io/github/actions/workflow/status/z9zzzz/Tonviewer/ci.yml?branch=master&style=for-the-badge&logo=githubactions&logoColor=white"></a>
-  <a href="https://tonviewer.readthedocs.io/en/latest/"><img alt="Read the Docs" src="https://img.shields.io/readthedocs/tonviewer?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
+<div class="tv-tagline">A Python SDK and command-line toolkit for TON blockchain data.</div> <p class="tv-badges">
+<a href="https://pypi.org/project/Tonviewer/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/Tonviewer?style=flat-square&color=0876b4"></a>
+  <a href="https://pypi.org/project/Tonviewer/"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/Tonviewer?style=flat-square"></a>
+  <a href="https://github.com/z9zzzz/Tonviewer/blob/master/LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/z9zzzz/Tonviewer?style=flat-square"></a>
+  <a href="https://github.com/z9zzzz/Tonviewer/actions/workflows/ci.yml"><img alt="CI status" src="https://img.shields.io/github/actions/workflow/status/z9zzzz/Tonviewer/ci.yml?branch=master&style=flat-square&logo=githubactions"></a>
+  <a href="https://tonviewer.readthedocs.io/en/latest/"><img alt="Read the Docs" src="https://img.shields.io/readthedocs/tonviewer?style=flat-square&logo=readthedocs"></a>
+  <a href="https://github.com/z9zzzz/Tonviewer"><img alt="GitHub stars" src="https://img.shields.io/github/stars/z9zzzz/Tonviewer?style=flat-square&logo=github"></a>
+  <a href="https://pypi.org/project/Tonviewer/"><img alt="Monthly downloads" src="https://img.shields.io/pypi/dm/Tonviewer?label=downloads%2Fmonth&style=flat-square"></a>
+  <a href="https://github.com/z9zzzz/Tonviewer/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/z9zzzz/Tonviewer?style=flat-square"></a>
 </p>
 
-Tonviewer brings the common TON explorer workflows into one Python package. Use the async `TonviewerClient` for typed service APIs, or the synchronous `Wallet` and `HashTx` helpers when you need the compatibility interface.
+Tonviewer makes common TON explorer workflows available from Python. Use `TonviewerClient` for asynchronous services and typed models, or the synchronous `Wallet` and `HashTx` compatibility helpers.
 
-## Get started
+---
 
-**Python 3.10 or newer** is required. Install the published package:
+## Quickstart
+
+Install Tonviewer from PyPI. Python 3.10 or newer is required.
 
 ```bash
 python -m pip install --upgrade Tonviewer
 ```
 
-Make your first wallet lookup with the asynchronous client:
+Fetch wallet information with the async client:
 
 ```python
 import asyncio
@@ -41,37 +41,59 @@ async def main():
 asyncio.run(main())
 ```
 
-Replace `YOUR_TON_ADDRESS` with a valid address. This example makes a live network request. For more examples, API key configuration, and the synchronous interface, continue to [Examples](examples.md) and [Configuration](configuration.md).
+Replace `YOUR_TON_ADDRESS` with a valid TON address. This example makes a live network request. Continue to [Installation](installation.md) or [Examples](examples.md) for setup and more ways to use the library.
 
-## What you can do
+## Features
 
-- **Wallets and transactions** — inspect account details, parse TONAPI events, or retrieve raw TON Center v3 transaction data.
-- **Tokens and collectibles** — retrieve Jetton balances, owned NFTs, and on-chain collectible gifts.
-- **Fragment and prices** — look up public Fragment username pages and TON/USD pricing.
-- **Command line** — run wallet, transaction, price, hash, and Fragment lookups with the `Tonviewer` command.
+- **Wallets and transactions** — get account details, parse TONAPI events, and retrieve raw TON Center v3 transaction data.
 
-Review the [architecture and data-source notes](architecture.md) before relying on provider data. Fragment results depend on public-page parsing, NFT labels use metadata heuristics, and scam indicators are caution flags rather than security verdicts.
+- **Jettons and NFTs** — inspect token balances, owned NFTs, metadata, and categories.
 
-## Documentation
+- **Collectible gifts** — find on-chain collectibles represented as NFTs.
 
-### Learn the API
+- **Fragment and prices** — look up public Fragment username pages and TON/USD rates.
 
-- [Installation](installation.md) · [Quick-start examples](examples.md) · [Sync and async APIs](sync-async.md)
-- [Configuration](configuration.md) · [API models and output](api-reference.md) · [Errors and troubleshooting](errors.md)
+- **Command line** — run wallet, transaction, hash, price, and Fragment lookups from the `Tonviewer` command.
+
+Provider data can be incomplete or delayed. Fragment results depend on public-page parsing, NFT labels use metadata heuristics, and scam indicators are caution flags—not security verdicts. See [Architecture and data sources](architecture.md) for the scope and limitations.
+
+## User guide
+
+### Getting started
+
+- [Installation](installation.md)
+
+- [Quick-start examples](examples.md)
+
+- [Sync and async APIs](sync-async.md)
+
+- [Configuration](configuration.md)
 
 ### Feature guides
 
-- [Wallet information](wallets.md) · [Transactions and pagination](transactions.md)
-- [NFTs](nfts.md) · [Collectible gifts](gifts.md) · [Jettons](jettons.md)
-- [Fragment usernames](fragment.md) · [TON prices](prices.md) · [CLI](cli.md)
+- [Wallets](wallets.md) · [Transactions](transactions.md) · [NFTs](nfts.md)
 
-### Project and contributing
+- [Gifts](gifts.md) · [Jettons](jettons.md) · [Fragment](fragment.md) · [Prices](prices.md)
 
-- [Architecture](architecture.md) · [Development](development.md)
-- [Verified fixes and behavior notes](changelog.md) · [Audit-fix details](fixes.md)
+- [Command-line interface](cli.md)
+
+### Reference and project
+
+- [API reference](api-reference.md)
+
+- [Errors and troubleshooting](errors.md)
+
+- [Architecture](architecture.md)
+
+- [Development](development.md)
+
+- [Changelog and verified behavior notes](changelog.md)
+
+- [Audit fixes](fixes.md)
+
 - [Full documentation index](README.md)
 
-```{toctree}
+```
 :hidden:
 :maxdepth: 2
 
@@ -96,4 +118,4 @@ changelog
 fixes
 ```
 
-Source, issue tracking, and releases are available on [GitHub](https://github.com/z9zzzz/Tonviewer).
+Source code, releases, and issue tracking are on [GitHub](https://github.com/z9zzzz/Tonviewer).
